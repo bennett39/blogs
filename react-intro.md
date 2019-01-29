@@ -711,8 +711,53 @@ committed to learning React fundamentals!
 Once you have this core understanding down, everything else you'll learn
 about React is the fun part!
 
+JavaScript introduced new keywords for declaring variables in ES6. A lot
+has been written about the keywords `let` and `const` and why you would
+use them instead of `var`. However, it's important to understand how
+these new declarations affect React.
 
+React officially prefers the use of `const` when declaring your
+variables.
 
+Of course, this means that you can't change the `const` later on in your
+program. Instead, you'll need to make sure your declarations of constant
+variables are well scoped inside functions and other scope blocks so
+that values can be saved and returned.
 
+That's not to say you won't use `let` or `var` in React! There are still
+plenty of applications for mutable variables.
+
+The reason React prefers immutability when possible is because so many 
+other things are changing in React. It makes it easier to predict what 
+your application will do when the underlying variables can't change.
+
+In addition, immutability allows us do save past values of certain
+variables. If we use a `const` inside a function and then add the value
+of that `const` to `this.state.history` (and vice versa), then we have
+the basis of state history, allowing us to undo/redo and revert to
+certain points in time.
+
+Consider the example we used above:
+
+```javascript
+const history = this.state.history;
+
+const changes = history.map((changeNum, changeDesc) => {
+  return <li key={changeNum}>{changeDesc}</li>;
+}
+```
+
+Because we grab values from the state history, we know those values
+won't need to change. When they do change, we'll save those changes as
+new entries in `this.state.history`.
 
 ## Welcome to React!
+
+Whew, that was a doozie of a guide! I hope it was useful.
+
+Now that you have an understanding of the broader context of how React
+fits together, developing your React web apps and understanding complex
+projects in React gets easier.
+
+Did I miss anything or make a mistake above? Please let me know in the
+comments!
